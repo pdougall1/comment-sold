@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_211646) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.integer "inventory_id"
     t.integer "product_id"
     t.text "street_address"
     t.text "apartment"
