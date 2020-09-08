@@ -10,7 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_210355) do
+ActiveRecord::Schema.define(version: 2020_09_08_211646) do
+
+  create_table "inventories", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "quantity"
+    t.text "color"
+    t.text "size"
+    t.integer "price_cents"
+    t.integer "sale_price_cents"
+    t.integer "cost_cents"
+    t.string "sku"
+    t.integer "weight"
+    t.integer "length"
+    t.integer "width"
+    t.integer "height"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "product_id"
+    t.text "street_address"
+    t.text "apartment"
+    t.text "city"
+    t.text "state"
+    t.string "country_code"
+    t.text "zip"
+    t.string "phone_number"
+    t.text "email"
+    t.string "name"
+    t.string "order_status"
+    t.text "payment_ref"
+    t.string "transaction_id"
+    t.integer "payment_amt_cents"
+    t.integer "ship_charged_cents"
+    t.integer "ship_cost_cents"
+    t.integer "subtotal_cents"
+    t.integer "total_cents"
+    t.text "shipper_name"
+    t.datetime "payment_date"
+    t.datetime "shipped_date"
+    t.text "tracking_number"
+    t.integer "tax_total_cents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
