@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_205834) do
+ActiveRecord::Schema.define(version: 2020_09_08_210355) do
+
+  create_table "products", force: :cascade do |t|
+    t.string "product_name"
+    t.text "description"
+    t.text "style"
+    t.text "brand"
+    t.string "url"
+    t.string "product_type"
+    t.integer "shipping_price"
+    t.text "note"
+    t.integer "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -20,8 +34,6 @@ ActiveRecord::Schema.define(version: 2020_09_08_205834) do
     t.boolean "superadmin"
     t.string "shop_name"
     t.string "remember_token", limit: 100
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "card_brand"
     t.string "card_last_four"
     t.datetime "trial_ends_at"
@@ -29,6 +41,8 @@ ActiveRecord::Schema.define(version: 2020_09_08_205834) do
     t.boolean "is_enabled"
     t.string "billing_plan"
     t.datetime "trial_starts_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

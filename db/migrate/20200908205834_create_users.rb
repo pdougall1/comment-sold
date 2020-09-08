@@ -8,8 +8,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.boolean :superadmin
       t.string :shop_name
       t.string :remember_token, limit: 100
-      t.timestamp :created_at
-      t.timestamp :updated_at
       t.string :card_brand
       t.string :card_last_four
       t.timestamp :trial_ends_at
