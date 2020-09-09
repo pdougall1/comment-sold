@@ -10,6 +10,7 @@ Dir.foreach(dir) do |filename|
 
   resource_name = filename.split('.').first
   resource = resource_name.singularize.camelize.constantize
+  rows = []
 
   CSV.parse(File.read("#{dir}/#{filename}"), headers: true) do |row|
     if resource == User
@@ -18,11 +19,10 @@ Dir.foreach(dir) do |filename|
       row['password'] = row['password_plain']
     end
 
-    unless resource.create(row.to_h)
-      puts "COULD NOT CREATE `#{resource}`"
-      raise resource.errors.messages
-    end
+    rows << resource.new(row.to_h)
   end
+  
+  resource.import(rows)
 
   puts "Created #{resource.count} #{resource_name.pluralize}"
 end
