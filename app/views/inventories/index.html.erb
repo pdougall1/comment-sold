@@ -10,6 +10,9 @@
   <%= label_tag(:product_id, "Product ID") %>
   <%= text_field_tag(:product_id, @product_id) %>
 
+  <%= label_tag(:threshold, "Threshold") %>
+  <%= text_field_tag(:threshold, @threshold) %>
+
   <br>
   <%= submit_tag("Filter") %>
 <% end %>

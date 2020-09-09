@@ -16,6 +16,11 @@ class InventoriesController < ApplicationController
       inventories = inventories.where(product_id: @product_id)
     end
 
+    if params[:threshold].present?
+      @threshold = params[:threshold]
+      inventories = inventories.where('quantity > ?', @threshold)
+    end
+
     @inventory = inventories.all
   end
 end
