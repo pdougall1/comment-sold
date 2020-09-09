@@ -12,6 +12,12 @@ Dir.foreach(dir) do |filename|
   resource = resource_name.singularize.camelize.constantize
 
   CSV.parse(File.read("#{dir}/#{filename}"), headers: true) do |row|
+    if resource == User
+      row = row.to_h
+
+      row['password'] = row['password_plain']
+    end
+
     resource.create!(row.to_h)
   end
 

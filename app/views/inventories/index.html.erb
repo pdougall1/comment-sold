@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Inventory</h1>
+<h3>Total Count (<%= @total_count %>)</h3>
+
+<%= form_tag(inventories_path, method: "get") do %>
+  <%= label_tag(:sku, "Sku") %>
+  <%= text_field_tag(:sku, @sku) %>
+
+  <%= label_tag(:product_id, "Product ID") %>
+  <%= text_field_tag(:product_id, @product_id) %>
+
+  <br>
+  <%= submit_tag("Filter") %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product name</th>
+      <th>Sku</th>
+      <th>Quantity</th>
+      <th>Color</th>
+      <th>Size</th>
+      <th>Price</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventory.each do |item| %>
+      <tr>
+        <td><%= item.product.product_name %></td>
+        <td><%= item.sku %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.color %></td>
+        <td><%= item.size %></td>
+        <td>$<%= item.price_cents/100.0 %></td>
+        <td>$<%= item.cost_cents/100.0 %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
