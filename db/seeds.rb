@@ -18,7 +18,10 @@ Dir.foreach(dir) do |filename|
       row['password'] = row['password_plain']
     end
 
-    resource.create!(row.to_h)
+    unless resource.create(row.to_h)
+      puts "COULD NOT CREATE `#{resource}`"
+      raise resource.errors.messages
+    end
   end
 
   puts "Created #{resource.count} #{resource_name.pluralize}"
