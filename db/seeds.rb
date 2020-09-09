@@ -2,10 +2,6 @@ require 'csv'
 
 dir = Rails.root.join('db', 'seed_data')
 
-# Creating the rows one at a time lets Rails validations work to maintian data integrity
-# But the seed takes a minute :/
-
-
 Dir.foreach(dir) do |filename|
   next if filename == '.' or filename == '..'
 
@@ -24,8 +20,12 @@ Dir.foreach(dir) do |filename|
 
     rows << resource.new(row.to_h)
   end
-  
-  resource.import(rows)
 
-  puts "Created #{resource.count} #{resource_name.pluralize}"
+  count = 200
+  rows.each_slice(count) do |_rows|
+    resource.import(_rows)
+    puts "Successfully imported #{_rows.count} #{resource_name}"
+  end
+
+  puts "Finished #{resource.count} #{resource_name}"
 end
