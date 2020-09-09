@@ -1,6 +1,7 @@
 class InventoriesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    
     @total_count = Inventory.sum(:quantity)
 
     # TODO: paginate
