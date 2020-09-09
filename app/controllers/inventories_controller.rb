@@ -4,8 +4,7 @@ class InventoriesController < ApplicationController
   def index
     @total_count = Inventory.sum(:quantity)
 
-    # TODO: paginate
-    inventories = Inventory.includes(:product)
+    inventories = Inventory.includes(:product).page(params[:page]).per(100)
 
     if params[:sku].present?
       @sku = params[:sku]
